@@ -1,0 +1,88 @@
+Pseudocódigo_BlackJack
+
+        Declaración de variables:
+       	   Entero: jugador, máquina, total_jugador, cartas_jugador, puntaje_jugador
+   	   Caracter: respuesta
+           
+
+
+Inicio
+	Escribir "inicio del juego"
+	cartas_jugador=(0)
+	cartas_maquina=(0)
+        puntaje_jugador= (0)
+        puntaje_maquina= (0)
+
+
+       Declaración de subprocesos: 
+
+          Nombre del subproceso: plus_card(jugador, cartas_jugador, puntaje_jugador)
+          Declaración de variables:
+            Entero: jugador, cartas_jugador, putaje_jugador
+          1.- Inicio  
+          2.- Hacer cartas_jugador= draw_card()
+          3.- Escribir "Sus cartas son: ", cartas_jugador
+          4.- Hacer sumar(cartas_jugador)= puntaje_jugador
+          5.- Escribir "Su puntaje es de: ", puntaje_jugador
+          6.- FinSubproceso
+   
+          Nombre del subproceso: player_turn(jugador, cartas_jugador, puntaje_jugador, carta)
+          Declaración de variables:
+            Entero: jugador, cartas_jugador, puntaje_jugador, carta
+            Caracter: respuesta
+          1.- Inicio
+          2.- Escribir "puntaje_jugador:"; 
+          3.- Mientras puntaje_jugador < 21 
+              Escribir: "¿Desea tomar otra carta? (sí/no):";
+	      Leer (respuesta);
+	      Si respuesta es "sí" Entonces
+                  plus_card (jugador, cartas_jugador)
+                  carta= draw_card()
+                  Hacer puntaje_jugador= draw_card() + cartas_jugador
+                  Escribir "Tu puntaje es de: ", puntaje_jugador
+              Si no
+                  Romper
+               Si puntaje_jugador > 21 Entonces
+                Inicio
+                  Escribir "¡Perdiste!";
+                  romper
+                Fin
+              Si no
+               Si puntaje_jugador = 21 Entonces
+                Inicio
+                  Escribir "¡Ganaste!"; 
+                  Romper
+                Fin 
+              Fin
+          4.- FinSubproceso
+          
+          Nombre del subproceso: machine_turn(maquina, cartas_maquina, puntaje_maquina)
+          Declaración de variables:
+            Entero: cartas_maquina, puntaje_maquina
+          1.- Inicio
+          2.- Si puntaje_jugador <= 21 Entonces
+                 Hacer cartas_maquina= draw_card()
+                 Escribir "Las cartas de la maquina son: ", cartas_maquina
+                 Hacer sumar(cartas_maquina)= puntaje_maquina 
+                 Escribir "El puntaje de la maquina es ", puntaje_maquina
+              FinSi
+          3.- Si puntaje_jugador > puntaje_maquina Entonces
+                 Escribir "¡Jugador ha ganado!";
+               Si no
+                  Si puntaje_jugador < puntaje_maquina Entonces
+                  Escribir "¡La maquina ha ganado!";
+               Si no 
+                  Escribir "¡Empate!";
+             FinSi
+          4.- FinSubproceso
+
+ Algoritmo principal:
+   Inicio
+       Escribir "Inicio del juego";
+       //Llamar a los subprocesos
+       player_turn(jugador, cartas_jugador, puntaje_jugador)
+       machine_turn(maquina, cartas_maquina, puntaje_maquina)
+   Fin
+
+Fin
+	
